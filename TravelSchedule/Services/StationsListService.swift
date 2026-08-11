@@ -1,6 +1,6 @@
+import Foundation
 import OpenAPIRuntime
 import OpenAPIURLSession
-import Foundation
 
 typealias StationsListResponse = Components.Schemas.StationsListResponse
 

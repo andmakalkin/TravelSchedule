@@ -2,34 +2,15 @@ import SwiftUI
 import OpenAPIURLSession
 
 struct ContentView: View {
-    let lat = 59.864177
-    let lng = 30.319163
-    let distance = 1
-    let station1 = "s2006004" // Ленинградский вокзал
-    let station2 = "s9602494" // Московский вокзал
-    let uid = "778A_2_2" // Москва — Санкт-Петербург
-    let carrierCode = "4240" // РЖД
+    private let latitude = 59.864177
+    private let longitude = 30.319163
+    private let distance = 1
+    private let fromStationCode = "s2006004" // Ленинградский вокзал
+    private let toStationCode = "s9602494" // Московский вокзал
+    private let uid = "778A_2_2" // Москва — Санкт-Петербург
+    private let carrierCode = "4240" // РЖД
     
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-        .onAppear {
-            // Раскомментировать по очереди для проверки
-            testGetNearestStations()
-//            testGetScheduleBetweenStations()
-//            testGetCopyright()
-//            testGetScheduleForStation()
-//            testGetThread()
-//            testGetNearestSettlement()
-//            testGetCarrier()
-//            testGetStationsList()
-        }
-    }
+    var body: some View { }
     
     private func testGetNearestStations() {
         Task {
@@ -41,8 +22,8 @@ struct ContentView: View {
                 print("ℹ️ [testGetNearestStations] Выполнение запроса\n")
                 
                 let response = try await service.getNearestStations(
-                    lat: lat,
-                    lng: lng,
+                    lat: latitude,
+                    lng: longitude,
                     distance: distance
                 )
                 
@@ -64,8 +45,8 @@ struct ContentView: View {
                 print("ℹ️ [testGetScheduleBetweenStations] Выполнение запроса\n")
                 
                 let response = try await service.getScheduleBetweenStations(
-                    from: station1,
-                    to: station2
+                    from: fromStationCode,
+                    to: toStationCode
                 )
                 
                 print("✅ [testGetScheduleBetweenStations] Получен ответ:\n\(response)\n")
@@ -105,7 +86,7 @@ struct ContentView: View {
                 print("ℹ️ [testGetScheduleForStation] Выполнение запроса\n")
                 
                 let response = try await service.getScheduleForStation(
-                    station2
+                    toStationCode
                 )
                 
                 print("✅ [testGetScheduleForStation] Получен ответ:\n\(response)\n")
@@ -147,8 +128,8 @@ struct ContentView: View {
                 print("ℹ️ [testGetNearestSettlement] Выполнение запроса\n")
                 
                 let response = try await service.getNearestSettlement(
-                    lat: lat,
-                    lng: lng
+                    lat: latitude,
+                    lng: longitude
                 )
                 
                 print("✅ [testGetNearestSettlement] Получен ответ:\n\(response)\n")
@@ -206,8 +187,4 @@ struct ContentView: View {
             middlewares: [APIKeyMiddleware()]
         )
     }
-}
-
-#Preview {
-    ContentView()
 }
