@@ -41,11 +41,11 @@ struct CarrierListView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.bottom, 84)
                     } else {
-                        ScrollView(showsIndicators: false) {
+                        ScrollView {
                             LazyVStack(spacing: 8) {
                                 ForEach(viewModel.filteredTravelOptions) { option in
                                     NavigationLink {
-                                        CarrierView()
+                                        CarrierView(carrier: option.carrier)
                                     } label: {
                                         carrierCard(option)
                                     }
@@ -54,8 +54,8 @@ struct CarrierListView: View {
                             }
                             .padding(.bottom, 92)
                         }
-                        .padding(.top, 16)
-                        .padding(.horizontal, 16)
+                        .scrollIndicators(.hidden)
+                        .padding([.top, .horizontal], 16)
                     }
                 }
                 .padding(.top, 16)
@@ -119,7 +119,7 @@ struct CarrierListView: View {
     private func carrierCard(_ option: TravelOption) -> some View {
         VStack(spacing: 18) {
             HStack(spacing: 8) {
-                Image(option.carrierLogo)
+                Image(option.carrier.logo)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 38, height: 38)
@@ -129,7 +129,7 @@ struct CarrierListView: View {
                 
                 HStack(alignment: .top, spacing: 0) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(option.carrierName)
+                        Text(option.carrier.name)
                             .font(.system(size: 17, weight: .regular))
                             .lineLimit(1)
                             .foregroundStyle(Color.ypBlackLight)
@@ -177,8 +177,7 @@ struct CarrierListView: View {
             .padding(.trailing, 14)
             
         }
-        .padding(.leading, 14)
-        .padding(.vertical, 14)
+        .padding([.leading, .vertical], 14)
         .frame(maxWidth: .infinity)
         .frame(height: 104)
         .background(Color.ypLightGrayLight)

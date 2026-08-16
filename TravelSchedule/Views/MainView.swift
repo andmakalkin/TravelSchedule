@@ -11,6 +11,9 @@ struct MainView: View {
     }
     
     @State private var viewModel = MainViewModel()
+    @State private var storiesPreviewViewModel = StoriesPreviewViewModel()
+    
+    @State private var selectedStory: Story?
     @State private var stationSelectionType: StationSelectionType?
     
     var body: some View {
@@ -20,12 +23,16 @@ struct MainView: View {
             
             switch viewModel.screenState {
             case .content:
-                ScrollView(showsIndicators: false) {
+                ScrollView {
                     VStack(spacing: 0) {
-                        Color.clear
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 188)
-                            .padding(.bottom, 20)
+                        StoriesPreviewView(
+                            viewModel: storiesPreviewViewModel
+                        ) { story in
+                            selectedStory = story
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 188)
+                        .padding(.bottom, 20)
                         
                         HStack(spacing: 16) {
                             VStack(alignment: .leading, spacing: 0) {
@@ -121,6 +128,7 @@ struct MainView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
+                .scrollIndicators(.hidden)
                 
             case .loading:
                 ProgressView()
@@ -142,6 +150,14 @@ struct MainView: View {
                     
                     stationSelectionType = nil
                 }
+            }
+        }
+        .fullScreenCover(item: $selectedStory) { story in
+            StoriesView(
+                stories: storiesPreviewViewModel.stories,
+                initialStory: story
+            ) { viewedStory in
+                storiesPreviewViewModel.markAsViewed(viewedStory)
             }
         }
     }

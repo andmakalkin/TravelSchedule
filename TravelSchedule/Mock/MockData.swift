@@ -107,10 +107,30 @@ enum MockData {
         )
     ]
     
+    static let rzd = Carrier(
+        name: "ОАО «РЖД»",
+        logo: "logoRZD",
+        email: "i.lozgkina@yandex.ru",
+        phone: "+7 (904) 329-27-71"
+    )
+
+    static let fgk = Carrier(
+        name: "ФГК",
+        logo: "logoFGK",
+        email: "info@fgk.ru",
+        phone: "+7 (800) 000-00-00"
+    )
+
+    static let uralLogistics = Carrier(
+        name: "Урал логистика",
+        logo: "logoUralLogistics",
+        email: "info@ural-logistics.ru",
+        phone: "+7 (800) 000-00-00"
+    )
+    
     static let travelOptions: [TravelOption] = [
         TravelOption(
-            carrierName: "РЖД",
-            carrierLogo: "logoRZD",
+            carrier: rzd,
             date: "14 января",
             departureTime: "22:30",
             arrivalTime: "08:15",
@@ -120,8 +140,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "ФГК",
-            carrierLogo: "logoFGK",
+            carrier: fgk,
             date: "15 января",
             departureTime: "01:15",
             arrivalTime: "09:00",
@@ -131,8 +150,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "Урал логистика",
-            carrierLogo: "logoUralLogistics",
+            carrier: uralLogistics,
             date: "16 января",
             departureTime: "12:30",
             arrivalTime: "21:00",
@@ -142,8 +160,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "РЖД",
-            carrierLogo: "logoRZD",
+            carrier: rzd,
             date: "17 января",
             departureTime: "08:20",
             arrivalTime: "17:00",
@@ -153,8 +170,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "РЖД",
-            carrierLogo: "logoRZD",
+            carrier: rzd,
             date: "14 января",
             departureTime: "22:30",
             arrivalTime: "08:15",
@@ -164,8 +180,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "ФГК",
-            carrierLogo: "logoFGK",
+            carrier: fgk,
             date: "15 января",
             departureTime: "01:15",
             arrivalTime: "09:00",
@@ -175,8 +190,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "Урал логистика",
-            carrierLogo: "logoUralLogistics",
+            carrier: uralLogistics,
             date: "15 января",
             departureTime: "12:30",
             arrivalTime: "21:00",
@@ -186,8 +200,7 @@ enum MockData {
         ),
         
         TravelOption(
-            carrierName: "РЖД",
-            carrierLogo: "logoRZD",
+            carrier: rzd,
             date: "17 января",
             departureTime: "08:20",
             arrivalTime: "17:00",
@@ -196,4 +209,13 @@ enum MockData {
             departurePeriod: .morning
         )
     ]
+    
+    static let stories: [Story] = (1...9).map { index in
+        Story(
+            title: "Text Text Text Text Text Text Text Text Text Text",
+            description: "Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text",
+            largeImage: "story\(index)",
+            previewImage: "story\(index)Preview"
+        )
+    }
 }

@@ -27,7 +27,7 @@ struct FilterView: View {
             Color.ypWhite
                 .ignoresSafeArea()
             
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 16) {
                     Text("Время отправления")
                         .font(.system(size: 24, weight: .bold))
@@ -61,6 +61,7 @@ struct FilterView: View {
                 .padding(.top, 16)
                 .padding(.bottom, 92)
             }
+            .scrollIndicators(.hidden)
             
             if viewModel.shouldShowApplyButton {
                 Button {
