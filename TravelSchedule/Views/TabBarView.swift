@@ -11,11 +11,13 @@ struct TabBarView: View {
                     .renderingMode(.template)
             }
             
-            SettingsView()
-                .tabItem {
-                    Image(.tabBarSettings)
-                        .renderingMode(.template)
-                }
+            NavigationStack {
+                SettingsView()
+            }
+            .tabItem {
+                Image(.tabBarSettings)
+                    .renderingMode(.template)
+            }
         }
     }
 }

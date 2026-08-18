@@ -66,6 +66,7 @@ struct StationSelectionView: View {
                             .padding(.horizontal, 16)
                             .padding(.top, 16)
                         }
+                        .scrollIndicators(.hidden)
                     }
                 }
                 

@@ -2,6 +2,8 @@ import SwiftUI
 
 @main
 struct TravelScheduleApp: App {
+    @State private var appSettings = AppSettings()
+    
     @MainActor
     init() {
         let appearance = UITabBarAppearance()
@@ -22,6 +24,12 @@ struct TravelScheduleApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .environment(appSettings)
+                .preferredColorScheme(
+                    appSettings.isDarkAppearance
+                    ? .dark
+                    : .light
+                )
         }
     }
 }
