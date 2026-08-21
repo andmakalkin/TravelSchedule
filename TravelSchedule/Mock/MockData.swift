@@ -4,26 +4,32 @@ enum MockData {
             name: "Москва",
             stations: [
                 Station(
+                    code: "01",
                     name: "Киевский вокзал",
                     cityName: "Москва"
                 ),
                 Station(
+                    code: "02",
                     name: "Курский вокзал",
                     cityName: "Москва"
                 ),
                 Station(
+                    code: "03",
                     name: "Ярославский вокзал",
                     cityName: "Москва"
                 ),
                 Station(
+                    code: "04",
                     name: "Белорусский вокзал",
                     cityName: "Москва"
                 ),
                 Station(
+                    code: "05",
                     name: "Савёловский вокзал",
                     cityName: "Москва"
                 ),
                 Station(
+                    code: "06",
                     name: "Ленинградский вокзал",
                     cityName: "Москва"
                 )
@@ -34,18 +40,22 @@ enum MockData {
             name: "Санкт-Петербург",
             stations: [
                 Station(
+                    code: "07",
                     name: "Балтийский вокзал",
                     cityName: "Санкт-Петербург"
                 ),
                 Station(
+                    code: "08",
                     name: "Московский вокзал",
                     cityName: "Санкт-Петербург"
                 ),
                 Station(
+                    code: "09",
                     name: "Витебский вокзал",
                     cityName: "Санкт-Петербург"
                 ),
                 Station(
+                    code: "10",
                     name: "Финляндский вокзал",
                     cityName: "Санкт-Петербург"
                 )
@@ -56,10 +66,12 @@ enum MockData {
             name: "Сочи",
             stations: [
                 Station(
+                    code: "11",
                     name: "Сочи",
                     cityName: "Сочи"
                 ),
                 Station(
+                    code: "12",
                     name: "Адлер",
                     cityName: "Сочи"
                 )
@@ -70,6 +82,7 @@ enum MockData {
             name: "Горный воздух",
             stations: [
                 Station(
+                    code: "13",
                     name: "Горный воздух",
                     cityName: "Горный воздух"
                 )
@@ -80,6 +93,7 @@ enum MockData {
             name: "Краснодар",
             stations: [
                 Station(
+                    code: "14",
                     name: "Краснодар-1",
                     cityName: "Краснодар"
                 )
@@ -90,6 +104,7 @@ enum MockData {
             name: "Казань",
             stations: [
                 Station(
+                    code: "15",
                     name: "Казань-Пасс.",
                     cityName: "Казань"
                 )
@@ -100,6 +115,7 @@ enum MockData {
             name: "Омск",
             stations: [
                 Station(
+                    code: "16",
                     name: "Омск-Пасс.",
                     cityName: "Омск"
                 )
@@ -108,22 +124,25 @@ enum MockData {
     ]
     
     static let rzd = Carrier(
+        code: 01,
         name: "ОАО «РЖД»",
-        logo: "logoRZD",
+        logoURL: nil,
         email: "i.lozgkina@yandex.ru",
         phone: "+7 (904) 329-27-71"
     )
 
     static let fgk = Carrier(
+        code: 02,
         name: "ФГК",
-        logo: "logoFGK",
+        logoURL: nil,
         email: "info@fgk.ru",
         phone: "+7 (800) 000-00-00"
     )
 
     static let uralLogistics = Carrier(
+        code: 03,
         name: "Урал логистика",
-        logo: "logoUralLogistics",
+        logoURL: nil,
         email: "info@ural-logistics.ru",
         phone: "+7 (800) 000-00-00"
     )
@@ -135,7 +154,17 @@ enum MockData {
             departureTime: "22:30",
             arrivalTime: "08:15",
             duration: "20 часов",
-            transferInfo: "С пересадкой в Костроме",
+            hasTransfers: true,
+            departurePeriod: .evening
+        ),
+        
+        TravelOption(
+            carrier: nil,
+            date: "14 января",
+            departureTime: "22:30",
+            arrivalTime: "08:15",
+            duration: "20 часов",
+            hasTransfers: true,
             departurePeriod: .evening
         ),
         
@@ -145,7 +174,7 @@ enum MockData {
             departureTime: "01:15",
             arrivalTime: "09:00",
             duration: "9 часов",
-            transferInfo: nil,
+            hasTransfers: false,
             departurePeriod: .night
         ),
         
@@ -155,7 +184,7 @@ enum MockData {
             departureTime: "12:30",
             arrivalTime: "21:00",
             duration: "9 часов",
-            transferInfo: nil,
+            hasTransfers: false,
             departurePeriod: .day
         ),
         
@@ -165,7 +194,7 @@ enum MockData {
             departureTime: "08:20",
             arrivalTime: "17:00",
             duration: "9 часов",
-            transferInfo: "С пересадкой в Москве",
+            hasTransfers: true,
             departurePeriod: .morning
         ),
         
@@ -175,7 +204,7 @@ enum MockData {
             departureTime: "22:30",
             arrivalTime: "08:15",
             duration: "20 часов",
-            transferInfo: "С пересадкой в Костроме",
+            hasTransfers: true,
             departurePeriod: .evening
         ),
         
@@ -185,7 +214,7 @@ enum MockData {
             departureTime: "01:15",
             arrivalTime: "09:00",
             duration: "9 часов",
-            transferInfo: nil,
+            hasTransfers: false,
             departurePeriod: .night
         ),
         
@@ -195,7 +224,7 @@ enum MockData {
             departureTime: "12:30",
             arrivalTime: "21:00",
             duration: "9 часов",
-            transferInfo: nil,
+            hasTransfers: false,
             departurePeriod: .day
         ),
         
@@ -205,17 +234,8 @@ enum MockData {
             departureTime: "08:20",
             arrivalTime: "17:00",
             duration: "9 часов",
-            transferInfo: "С пересадкой в Москве",
+            hasTransfers: true,
             departurePeriod: .morning
         )
     ]
-    
-    static let stories: [Story] = (1...9).map { index in
-        Story(
-            title: "Text Text Text Text Text Text Text Text Text Text",
-            description: "Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text",
-            largeImage: "story\(index)",
-            previewImage: "story\(index)Preview"
-        )
-    }
 }
